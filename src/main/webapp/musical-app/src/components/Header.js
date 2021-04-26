@@ -39,6 +39,7 @@ const Header = () => {
       {/* a tag라고 생각해도 무방. to 다음 주소랑 App.js에서 설정해놓은 주소랑 같은 곳으로? 이동 */}
       <li>
         <Link to="/">TEST</Link>
+        <Link to="/Register">회원가입</Link>
       </li>
     </MenuStyle>
   );
