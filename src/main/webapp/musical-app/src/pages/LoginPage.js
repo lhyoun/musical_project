@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Col, Container, Row } from 'react-bootstrap';
 import styled from "styled-components";
@@ -47,6 +47,47 @@ const LoginPage = () => {
         background-color:white;
     `;
 
+    const [user, setUser] = useState({
+        loginid: "",
+        password: "",
+    });
+
+    const inputHandle = (e) => {
+		setUser({
+			...user,
+			[e.target.name]: e.target.value,
+		});
+	};
+
+    const loginRequest = () => {
+		let person = {
+			loginid: user.loginid,
+			password: user.password
+		}
+
+		fetch("http://localhost:8000/login", {
+			method: "POST",
+			body: JSON.stringify(person),
+			headers: {
+				'Content-Type': "application/json; charset=utf-8"
+			}
+		}).then(res => {
+			for (let header of res.headers.entries()) {
+				if (header[0] === "authorization") {
+					let data = header[1];
+					//data = data.substring(7);
+					localStorage.setItem("Authorization", data);
+					//setToken();
+				}
+			}
+			return res.text();
+		}).then(
+			res => {
+				alert(res);
+				//if (res === "ok") handleClose();
+			});
+	}
+
     return (
         <div>
             <Container>
@@ -67,13 +108,21 @@ const LoginPage = () => {
                     
                     <Col md={1}></Col>
                     <Col md={4}>
-                        <InputStyle placeholder='아이디'></InputStyle>
+                        <InputStyle 
+                                    name="loginid" 
+                                    placeholder="아이디" 
+                                    onChange={inputHandle}
+									value={user.loginid}></InputStyle>
                     </Col>
                     <Col md={7}></Col>
 
                     <Col md={1}></Col>
                     <Col md={4}>
-                        <InputStyle placeholder='비밀번호'></InputStyle>
+                        <InputStyle 
+									name="password"
+									placeholder="비밀번호"
+									onChange={inputHandle}
+									value={user.password}></InputStyle>
                     </Col>
                     <Col md={7}></Col>
 
@@ -84,7 +133,7 @@ const LoginPage = () => {
                     <Col md={7}></Col>
 
                     <Col md={6}>
-                        <DivStyle1><DivStyle3>로그인</DivStyle3></DivStyle1>
+                        <DivStyle1><DivStyle3 onClick={loginRequest}>로그인</DivStyle3></DivStyle1>
                     </Col>
                     <Col md={6}></Col>
                     

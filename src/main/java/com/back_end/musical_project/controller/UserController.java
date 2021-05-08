@@ -19,7 +19,7 @@ public class UserController {
 	@GetMapping("/idCheck/{loginid}")
 	public ResponseEntity<?> idCheck(@PathVariable String loginid) {
 
-		int n = userRepository.countByUsername(loginid);
+		int n = userRepository.countByLoginid(loginid);
 		if (n == 0) {
 			return new ResponseEntity<String>("ok", HttpStatus.OK);
 		} else {
