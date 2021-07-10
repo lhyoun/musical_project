@@ -1,0 +1,14 @@
+{
+    "telemetry.machineId": "7fc79428dde5755c95f2776496e3896aae172d0486a6d751646b5fd2f0407eb1",
+    "openedPathsList": {
+        "workspaces3": [
+            {
+                "id": "7db70dbb1d8ddacdcdc4ab025abc4dde",
+                "configURIPath": "file:///d%3A/asdas/musical_project/.metadata/codemix.code-workspace"
+            }
+        ],
+        "files2": []
+    },
+    "theme": "vs-dark",
+    "themeBackground": "#1e1e1e"
+}
