@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import MusicalCard from '../components/MusicalCard';
 
 const MainPage = () => {
     return (
         <div>
+            <MusicalCard></MusicalCard>
         </div>
     );
 };
